@@ -7,10 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import static helpers.Fixture.wait;
-
-
 public class AddCustomer {
     private WebDriver driver;
     public AddCustomer(WebDriver driver) {
@@ -37,27 +34,12 @@ public class AddCustomer {
         postCodeField.sendKeys("S9999");
         addCustomerButton.click();
     }
-    @Step("Работа с алерт-окном")
+    @Step("Получить текст из алерт-окна")
     public String alert() {
     Alert alert = wait.until(ExpectedConditions.alertIsPresent());
     String text = alert.getText();
     return text;
 }
-
-//    @Step("Алерт")
-//    public void alert() {
-//        try {
-//            addCustomerButton.sendKeys(Keys.ENTER);
-//        } catch (UnhandledAlertException f) {
-//            try {
-//                Alert alert = driver.switchTo().alert();
-//                String alertText = alert.getText();
-//                System.out.println("Alert data: " + alertText);
-//                ((Alert) alert).accept();
-//            } catch (NoAlertPresentException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 
 

@@ -1,6 +1,7 @@
 package helpers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,13 +28,9 @@ public class Fixture extends IOException {
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By
              .xpath("//button[@ng-click=\"addCust()\"]")));
-//        wait.until(ExpectedConditions.alertIsPresent());
-//        driver.switchTo().alert().accept();
     }
-
-//    @AfterEach
-//    void exit(){
-//        driver.quit();
-//    }
-
+    @AfterEach
+    void exit(){
+        driver.quit();
+    }
 }

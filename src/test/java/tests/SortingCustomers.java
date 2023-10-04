@@ -6,6 +6,9 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
+import org.junit.jupiter.api.Test;
 import tabs.Customers;
 
 public class SortingCustomers extends Fixture {
@@ -14,16 +17,15 @@ public class SortingCustomers extends Fixture {
     public void before() {
         customers = new Customers(driver);
     }
+    @Execution(ExecutionMode.CONCURRENT)
     @Story("Сортировка клиентов по имени (First Name)")
-    @org.junit.jupiter.api.Test
+    @Test
     @Severity(SeverityLevel.NORMAL)
     public void sortingCustomersByFirstName() {
         customers.goToCustomers();
-        customers.sortingCustomers();
-
-            Assert.assertEquals(customers.createAfterSort(),customers.createBeforeSort());
+        /** Проверка совпадения отсортированного на UI списка списку, полученному путем сортировки массива*/
+        Assert.assertEquals(customers.createAfterSort(),customers.createBeforeSort());
         }
-
     }
 
 
